@@ -54,7 +54,7 @@ void Configure_EcatPDI (void)
     MAP_GPIOPinConfigure(GPIO_PB4_SSI2CLK);
     MAP_GPIOPinConfigure(GPIO_PB6_SSI2RX); // MISO
     MAP_GPIOPinConfigure(GPIO_PB7_SSI2TX); // MOSI
-#elif HW_TYPE == VV_IO
+#elif HW_TYPE == IMU_VV_IO
     MAP_GPIOPinConfigure(GPIO_PA2_SSI0CLK);
     MAP_GPIOPinConfigure(GPIO_PA4_SSI0RX); // MISO
     MAP_GPIOPinConfigure(GPIO_PA5_SSI0TX); // MOSI

@@ -16,9 +16,9 @@ foe_writefile_cfg_t      gFOE_firmware_files[] = {
 		.on_foe_open = 			on_foe_open_cb,
 		.on_foe_close =			on_foe_close_cb,
     },
-	// hyq hub_board
+	// hyq IOv5_board
     {
-		.name =					"hub_board.bin",
+		.name =					"ioV5_tm4c.bin",
 		.max_data = 			FLASH_APP_SIZE,
 		.dest_start_address =	FLASH_APP_START,
 		.address_offset =		0,
@@ -35,6 +35,18 @@ foe_writefile_cfg_t      gFOE_firmware_files[] = {
 		.dest_start_address =	FLASH_APP_START,
 		.address_offset =		0,
 		.filepass =				0xB002,
+        .write_function =       foe_write_flash,
+        .read_function =        0,
+        .on_foe_open =          on_foe_open_cb,
+        .on_foe_close =         on_foe_close_cb,
+    },
+	// imu_board
+    {
+		.name =					"imu_tm4c.bin",
+		.max_data = 			FLASH_APP_SIZE,
+		.dest_start_address =	FLASH_APP_START,
+		.address_offset =		0,
+		.filepass =				0xB003,
         .write_function =       foe_write_flash,
         .read_function =        0,
         .on_foe_open =          on_foe_open_cb,
