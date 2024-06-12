@@ -29,7 +29,7 @@ extern uint32_t gCalc_crc;
 extern uint16_t crc_ok;
 
 uint32_t calc_CRC(uint32_t addr, uint32_t length);
-uint32_t foe_write_flash(foe_writefile_cfg_t * writefile_cfg, uint8_t * data, size_t length);
+uint32_t foe_write_flash(foe_file_cfg_t * writefile_cfg, uint8_t * data, size_t length);
 uint32_t on_foe_open_cb(uint8_t op);
 uint32_t on_foe_close_cb(void);
 

@@ -21,7 +21,7 @@ uint8_t *rxpdo = (uint8_t*) &rx_pdo;
 uint8_t *txpdo = (uint8_t*) &tx_pdo;
 
 extern uint16_t crc_ok;
-extern foe_writefile_cfg_t gFOE_firmware_files[];
+extern foe_file_cfg_t gFOE_firmware_files[];
 
 extern void try_boot(void);
 
@@ -104,7 +104,7 @@ void bootstrap_foe_init(void) {
 
 	/* setup application foe_file structs */
 	int file_cnt = 0;
-	foe_writefile_cfg_t *tmp_foe_files = gFOE_firmware_files;
+	foe_file_cfg_t *tmp_foe_files = gFOE_firmware_files;
 
 	while (tmp_foe_files->name != 0) {
 		DPRINT("foe_file %s addr 0x%04X\n", tmp_foe_files->name,
@@ -122,7 +122,7 @@ void bootstrap_foe_init(void) {
 	/** Pointer to files configured to be used by FoE */
 	gFOE_config.files = gFOE_firmware_files;
 
-	FOE_config(&gFOE_config, gFOE_firmware_files);
+	FOE_config(&gFOE_config);
 
 	DPRINT("config %d foe_file(s)\n", file_cnt);
 

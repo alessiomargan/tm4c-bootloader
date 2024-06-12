@@ -3,7 +3,7 @@
 #include <soes/esc_foe.h>
 
 
-foe_writefile_cfg_t      gFOE_firmware_files[] = {
+foe_file_cfg_t      gFOE_firmware_files[] = {
     // launchpad
 	{
 		.name =					"soes_tm4c.bin",
