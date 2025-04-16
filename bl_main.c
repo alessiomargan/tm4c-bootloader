@@ -1,7 +1,8 @@
+/* Standard Includes */
 #include <stdint.h>
 #include <stdbool.h>
 
-
+/* DriverLib Includes */
 #include <inc/hw_ints.h>
 #include <inc/hw_memmap.h>
 #include <inc/hw_types.h>
@@ -13,18 +14,23 @@
 #include <driverlib/rom_map.h>
 #include <driverlib/interrupt.h>
 
-#include <pins.h>
-#include <peripherals.h>
-#include <foe_flash.h>
-
+/* SOES Includes */
 #include <cc.h>
 #include <soes/esc.h>
 #include <soes/hal/advr_esc/soes.h>
 
+/* Bldr Includes */
+#include <pins.h>
+#include <peripherals.h>
+#include <foe_flash.h>
+
+/* Auto-generated file */
+#include <build_info.h>
+
 #include <tiva-morser/morse.h>
 
-
 extern esc_cfg_t config;
+extern void print_build_info(void);
 
 static void jump2app(void) {
     // disable interrupts
@@ -119,6 +125,7 @@ void do_morse_led(void) {
     MAP_GPIOPinWrite(LED_BASE, LED_PIN, led_status ? LED_PIN : 0 );
 
 }
+
 //*****************************************************************************
 //
 //
@@ -140,6 +147,8 @@ void main(void)
     Configure_EcatPDI();
     // Enable processor interrupts.
     MAP_IntMasterEnable();
+
+    print_build_info();
 
     gCalc_crc = calc_CRC(FLASH_APP_START, FLASH_APP_SIZE);
     crc_ok = (gCalc_crc == bldr_info.crc_app) ? 1 : 0;

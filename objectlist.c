@@ -10,6 +10,11 @@ extern uint16_t 	flash_cmd_ack;
 extern uint16_t   	crc_ok;
 extern uint16_t   	et1100_boot_pin;
 
+extern const uint32_t 	CRC_App;
+extern const uint8_t 	BLDR_Version[];
+extern const uint8_t	git_hash[];
+extern const uint8_t	git_branch[];
+extern const uint8_t	build_ts[];
 
 static const char Number_of_elements[] = "Number of Elements";
 //static const char mapped_obj[] = "Mapped Object";
@@ -112,14 +117,16 @@ const _objd SDO7000[] =
 
 const _objd SDO8000[] =
 {
-  {0x0, DTYPE_UNSIGNED8,     	 8, ATYPE_RO,   Number_of_elements,   6, 0},
+  {0x0, DTYPE_UNSIGNED8,     	 8, ATYPE_RO,   Number_of_elements,   9, 0},
   {0x1, DTYPE_UNSIGNED16,   	16, ATYPE_RW, 	"flash_cmd",  	0, &flash_cmd},
   {0x2, DTYPE_UNSIGNED16,   	16, ATYPE_RO, 	"flash_cmd_ack",0, &flash_cmd_ack},
   {0x3, DTYPE_UNSIGNED32,   	32, ATYPE_RO, 	"flash_crc",  	0, (void*)&bldr_info.crc_app},
   {0x4, DTYPE_VISIBLE_STRING,   64, ATYPE_RO,   "bl_ver",   	0, &BLDR_Version},
   {0x5, DTYPE_UNSIGNED16,   	16, ATYPE_RO, 	"crc_ok",  		0, &crc_ok},
   {0x6, DTYPE_UNSIGNED16,   	16, ATYPE_RO, 	"et1100_boot_pin",0, &et1100_boot_pin},
-
+  {0x7, DTYPE_VISIBLE_STRING,   64, ATYPE_RO,   "git_hash",   	0, &git_hash},
+  {0x8, DTYPE_VISIBLE_STRING,   64, ATYPE_RO,   "git_branch",  	0, &git_branch},
+  {0x9, DTYPE_VISIBLE_STRING,   64, ATYPE_RO,   "build_ts",   	0, &build_ts},
 };
 
 
@@ -140,7 +147,7 @@ const _objectlist SDOobjects[] =
   {0x1C32, OTYPE_RECORD, 	 5,  0, "SM2(Output) Synchronisation  Parameter", SDO1C32},
   {0x6000, OTYPE_RECORD,	 0,  0, "Inputs", SDO6000},
   {0x7000, OTYPE_RECORD,     0,  0, "Outputs", SDO7000},
-  {0x8000, OTYPE_RECORD,     6,  0, "Flash Parameters", SDO8000},
+  {0x8000, OTYPE_RECORD,     9,  0, "Flash Parameters", SDO8000},
   {0xffff, 0xff, 0xff, 0xff, 0, 0}
 };
 

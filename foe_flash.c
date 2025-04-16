@@ -10,18 +10,10 @@
 
 #include <foe_flash.h>
 #include <soes/esc_foe.h>
-
+#include <build_info.h>
 
 extern foe_cfg_t gFOE_config;
 
-const uint8_t BLDR_Version[8] = "tm4c_1.0";
-
-#pragma RETAIN(bldr_info)
-#pragma DATA_SECTION(bldr_info, ".bldr_info")
-const bldr_info_t bldr_info;
-
-uint32_t gCalc_crc;
-uint16_t crc_ok;
 
 uint32_t calc_CRC(uint32_t start_addr, uint32_t length)
 {
