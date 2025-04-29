@@ -27,7 +27,7 @@ extern void try_boot(void);
 
 void pre_state_change_hook(uint8_t *as, uint8_t *an);
 void post_state_change_hook(uint8_t *as, uint8_t *an);
-void ESC_App_objecthandler(uint16_t index, uint8_t subindex, uint16_t flags);
+uint32_t ESC_App_objecthandler(uint16_t index, uint8_t subindex, uint16_t flags);
 
 /* Setup config hooks */
 const esc_cfg_t config = {
@@ -55,7 +55,7 @@ const esc_cfg_t config = {
  * @param[in] index      = index of SDO download request to handle
  * @param[in] sub-index  = sub-index of SDO download request to handle
  */
-void ESC_App_objecthandler(uint16_t index, uint8_t subindex, uint16_t flags) {
+uint32_t ESC_App_objecthandler(uint16_t index, uint8_t subindex, uint16_t flags) {
 	switch (index) {
 	case 0x8001:
 		/* Handle post-write of parameter values */
@@ -69,6 +69,7 @@ void ESC_App_objecthandler(uint16_t index, uint8_t subindex, uint16_t flags) {
 		DPRINT("SDO 0x%04X %d NOT Handled\n", index, subindex);
 		break;
 	}
+	return 0;
 }
 
 /** Mandatory: Hook called from the slave stack ESC_stopoutputs to act on state changes

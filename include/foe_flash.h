@@ -8,7 +8,6 @@
  * RAM Size: 32KB
  * Sector Size: 1KB
  * Family: Blizzard
- */
 
 #define FLASH_SIZE 			0x40000
 #define FLASH_APP_START		0x10000
@@ -16,6 +15,17 @@
 #define FLASH_PAR_START		0x3F000
 #define FLASH_PAR_SIZE		0x01000
 #define FLASH_APP_SIZE 		FLASH_SIZE - FLASH_PAR_SIZE - FLASH_APP_START
+ */
+// Linker variable.
+extern uint32_t __FLASH_SIZE;
+extern uint32_t __FLASH_APP_START;
+extern uint32_t __FLASH_APP_SIZE;
+
+#define FLASH_SIZE 			_symval(&__FLASH_SIZE);
+#define FLASH_APP_START		_symval(&__FLASH_APP_START)
+#define FLASH_APP_SIZE 		_symval(&__FLASH_APP_SIZE)
+#define FLASH_APP_END 		FLASH_APP_START + FLASH_APP_SIZE
+
 
 typedef struct {
     uint32_t    crc_app;

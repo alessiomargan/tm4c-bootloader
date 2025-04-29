@@ -2,7 +2,6 @@
 #include <foe_flash.h>
 #include <build_info.h>
 
-
 const uint8_t BLDR_Version[] = BUILD_SHORT_TS;
 
 #pragma RETAIN(bldr_info)
@@ -21,6 +20,8 @@ const uint8_t build_short_ts[] = BUILD_SHORT_TS;
 void print_build_info(void) {
 
 	printf("\n");
+	printf("%lx\n",_symval(&__FLASH_SIZE));
+	printf("%lx\n",&__FLASH_SIZE);
 	printf("Build Timestamp: %s\n", BUILD_TIMESTAMP);
 	printf("Build short Timestamp: %s\n", BUILD_SHORT_TS);
 	printf("Git Hash: %s\n", GIT_HASH);

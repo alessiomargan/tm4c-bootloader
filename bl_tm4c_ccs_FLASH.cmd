@@ -23,7 +23,6 @@
 // Properties: Build->ARM Linker->Advanced Options->Runtime Environment->Initialization mode->--rom_model
 
 /* System memory map */
-#define FLASH_SIZE  0x00040000
 
 #define BLDR_START  0x00000000
 #define BLDR_SIZE   0x00010000
@@ -36,7 +35,7 @@
 MEMORY
 {
     FLASH       (RX)  : origin = BLDR_START, length = BLDR_SIZE
-    FLASH_INFO  (R)   : origin = INFO_START, length = INFO_SIZE
+    BLDR_INFO   (R)   : origin = INFO_START, length = INFO_SIZE
     SRAM        (RWX) : origin = RAM_BASE,   length = 0x00008000
 }
 
@@ -52,8 +51,7 @@ SECTIONS
     .TI.ramfunc : {} load=FLASH, run=SRAM, table(BINIT)
     .binit      : {}  > FLASH
 
-    .bldr_info : > FLASH_INFO
-    //.BLDR_VER: > FLASH_INFO
+    .bldr_info : > BLDR_INFO
 
     .vtable :   > RAM_BASE
     .data   :   > SRAM
@@ -63,7 +61,14 @@ SECTIONS
 
 }
 
-__STACK_TOP = __stack + 512;
+__STACK_TOP = __stack + __STACK_SIZE;
 
 
+__FLASH_SIZE        = 0x00040000;
+__PARAM_START       = 0x0003F000;
+__PARAM_SIZE        = 0x00001000;
+__CALIB_START       = 0x0003E000;
+__CALIB_SIZE        = 0x00001000;
+__FLASH_APP_START   = 0x00020000;
+__FLASH_APP_SIZE    = __FLASH_SIZE - __FLASH_APP_START - __PARAM_SIZE - __CALIB_SIZE;
 

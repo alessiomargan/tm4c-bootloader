@@ -50,7 +50,7 @@ uint32_t on_foe_open_cb(uint8_t op)
     // size of a single eraseable sector of flash
     uint32_t sect_size = MAP_SysCtlFlashSectorSizeGet();
     uint32_t addr = FLASH_APP_START;
-    DPRINT("[%s] Erase flash 0x%04X 0x%04X\n", __FUNCTION__, addr, FLASH_APP_END);
+    DPRINT("[%s] Erase flash 0x%04X 0x%04X\n", __FUNCTION__, addr, FLASH_APP_START + FLASH_APP_SIZE);
     while ( addr < FLASH_APP_END && ret == 0 ) {
         ret = MAP_FlashErase(addr);
         addr += sect_size;

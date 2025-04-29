@@ -1,14 +1,12 @@
-
 #include <foe_flash.h>
 #include <soes/esc_foe.h>
-
 
 foe_file_cfg_t      gFOE_firmware_files[] = {
     // launchpad
 	{
 		.name =					"soes_tm4c.bin",
-		.max_data = 			FLASH_APP_SIZE,
-		.dest_start_address =	FLASH_APP_START,
+		.max_data = 			&__FLASH_APP_SIZE,
+		.dest_start_address =	&__FLASH_APP_START,
 		.address_offset =		0,
 		.filepass =				0xB007,
 		.write_function =		foe_write_flash,
@@ -19,8 +17,8 @@ foe_file_cfg_t      gFOE_firmware_files[] = {
 	// hyq IOv5_board
     {
 		.name =					"ioV5_tm4c.bin",
-		.max_data = 			FLASH_APP_SIZE,
-		.dest_start_address =	FLASH_APP_START,
+		.max_data = 			&__FLASH_APP_SIZE,
+		.dest_start_address =	&__FLASH_APP_START,
 		.address_offset =		0,
 		.filepass =				0xB001,
         .write_function =       foe_write_flash,
@@ -31,8 +29,8 @@ foe_file_cfg_t      gFOE_firmware_files[] = {
 	// hyq valve_board
     {
 		.name =					"valve_tm4c.bin",
-		.max_data = 			FLASH_APP_SIZE,
-		.dest_start_address =	FLASH_APP_START,
+		.max_data = 			&__FLASH_APP_SIZE,
+		.dest_start_address =	&__FLASH_APP_START,
 		.address_offset =		0,
 		.filepass =				0xB002,
         .write_function =       foe_write_flash,
@@ -43,8 +41,8 @@ foe_file_cfg_t      gFOE_firmware_files[] = {
 	// imu_board
     {
 		.name =					"imu_tm4c.bin",
-		.max_data = 			FLASH_APP_SIZE,
-		.dest_start_address =	FLASH_APP_START,
+		.max_data = 			&__FLASH_APP_SIZE,
+		.dest_start_address =	&__FLASH_APP_START,
 		.address_offset =		0,
 		.filepass =				0xB003,
         .write_function =       foe_write_flash,

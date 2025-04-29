@@ -38,7 +38,6 @@ void Configure_UART(void)
     // Initialize the UART for console I/O.
     //UARTStdioConfig(0, 115200, 16000000);
 
-
     // Enable UART0
 	MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
 	// Configure the UART for 115200, n, 8, 1
