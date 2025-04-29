@@ -163,9 +163,8 @@ void main(void)
 
     while (1) {
 
-    	loop_cnt ++;
-        soes_loop();
-        if ( ! (loop_cnt % 100) ) {
+    	soes_loop();
+        if ( ! (loop_cnt++ % 100) ) {
         	do_morse_led();
         }
 

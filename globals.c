@@ -3,7 +3,7 @@
 #include <build_info.h>
 
 
-const uint8_t BLDR_Version[8] = GIT_TAG;
+const uint8_t BLDR_Version[] = BUILD_SHORT_TS;
 
 #pragma RETAIN(bldr_info)
 #pragma DATA_SECTION(bldr_info, ".bldr_info")
@@ -14,13 +14,16 @@ uint16_t crc_ok;
 
 const uint8_t git_hash[] = GIT_HASH;
 const uint8_t git_branch[] = GIT_BRANCH;
+const uint8_t git_tag[] = GIT_TAG;
 const uint8_t build_ts[] = BUILD_TIMESTAMP;
+const uint8_t build_short_ts[] = BUILD_SHORT_TS;
 
 void print_build_info(void) {
 
 	printf("\n");
 	printf("Build Timestamp: %s\n", BUILD_TIMESTAMP);
-    printf("Git Hash: %s\n", GIT_HASH);
+	printf("Build short Timestamp: %s\n", BUILD_SHORT_TS);
+	printf("Git Hash: %s\n", GIT_HASH);
     printf("Git Commit Hash: %s\n", GIT_COMMIT_HASH);
     printf("Git Branch: %s\n", GIT_BRANCH);
     printf("Git Tag: %s\n", GIT_TAG);

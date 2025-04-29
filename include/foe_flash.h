@@ -24,7 +24,7 @@ typedef struct {
 
 extern const bldr_info_t bldr_info;
 
-extern const uint8_t BLDR_Version[8];
+extern const uint8_t BLDR_Version[];
 extern uint32_t gCalc_crc;
 extern uint16_t crc_ok;
 

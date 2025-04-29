@@ -1,5 +1,7 @@
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
+#include <stdio.h>
 
 #include <inc/hw_ints.h>
 #include <inc/hw_memmap.h>
@@ -15,10 +17,11 @@
 #include <driverlib/ssi.h>
 #include <driverlib/uart.h>
 #include <driverlib/crc.h>
-#include <utils/uartstdio.h>
+//#include <utils/uartstdio.h>
+
+#include <soes/esc.h>
 
 #include <pins.h>
-#include <dprint.h>
 
 void Configure_UART(void)
 {
@@ -33,10 +36,38 @@ void Configure_UART(void)
     // Use the internal 16MHz oscillator as the UART clock source.
     MAP_UARTClockSourceSet(UART0_BASE, UART_CLOCK_PIOSC);
     // Initialize the UART for console I/O.
-    UARTStdioConfig(0, 115200, 16000000);
+    //UARTStdioConfig(0, 115200, 16000000);
+
+
+    // Enable UART0
+	MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+	// Configure the UART for 115200, n, 8, 1
+	MAP_UARTConfigSetExpClk(UART0_BASE, 16000000, 115200,
+							(UART_CONFIG_PAR_NONE | UART_CONFIG_STOP_ONE |
+							 UART_CONFIG_WLEN_8));
+	// Enable the UART operation.
+	MAP_UARTEnable(UART0_BASE);
 
     DPRINT("%s\n",__FUNCTION__);
 
+}
+
+int fputc(int _c, register FILE *_fp) {
+	MAP_UARTCharPut(UART0_BASE, (unsigned char) _c);
+	return ((unsigned char) _c);
+}
+
+int fputs(const char *_ptr, register FILE *_fp) {
+	unsigned int i, len;
+
+	len = strlen(_ptr);
+
+	for (i = 0; i < len; i++) {
+		MAP_UARTCharPut(UART0_BASE, (unsigned char) _ptr[i]);
+
+	}
+
+	return len;
 }
 
 void Configure_EcatPDI (void)
